@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blind Mode Navigation</title>
+<style>
+  body { font-family: Arial, sans-serif; background:#000; color:#fff; line-height:1.8; padding:25px; }
+  h1 { color:#00e5ff; text-align:center; font-size:2.5rem; margin-bottom:30px; }
+  .nav-item { margin:15px 0; font-size:1.3rem; padding:10px; border-radius:5px; }
+  .highlight { outline:3px solid #00e5ff; }
+</style>
+</head>
+<body>
+
+<h1>Blind Mode Navigation</h1>
+
+<div id="nav-container">
+  <div class="nav-item" tabindex="0">Motherboard</div>
+  <div class="nav-item" tabindex="0">CPU</div>
+  <div class="nav-item" tabindex="0">GPU</div>
+  <div class="nav-item" tabindex="0">RAM</div>
+</div>
+
+<script>
+let navLinks = Array.from(document.querySelectorAll(".nav-item"));
+let currentNavIndex = 0;
+let pendingNavIndex = null;
+let confirmationActive = false;
+let spacePressCount = 0;
+let askingLeave = false;
+
+// Content for each item
+const navContent = {
+  "Motherboard": [
+    "Motherboards evolved from simple backplanes into complex PCBs. It is the backbone of a computer connecting all essential components. It offers expandability, compatibility, and integration with peripherals. High-end boards can be expensive. Main parts include CPU socket, RAM slots, PCIe slots, chipset, power connectors, SATA and USB ports, and cooling headers."
+  ],
+  "CPU": [
+    "The CPU is developed as the brain of computers. It executes instructions and manages all tasks in a computer. CPUs provide high processing power and multitasking ability. They generate heat, have a limited lifespan, and compatibility depends on the motherboard. Main parts include cores, cache, control unit, arithmetic logic unit, and pins or socket."
+  ],
+  "GPU": [
+    "GPU stands for Graphics Processing Unit. It is a specialized processor designed to handle graphics and complex calculations, making images, videos, and animations run smoothly. The first GPU called NVIDIA GeForce 256 was released in 1999. It handled 3D graphics and offloaded rendering tasks from the CPU. Since then, GPUs have evolved to support gaming, video editing, artificial intelligence, and scientific computing. GPUs enhance visual experiences, accelerate computing tasks, and support technologies such as virtual reality, machine learning, and cryptocurrency mining. GPUs provide high performance for tasks processed in parallel, deliver better graphics, and are efficient for AI and large computations. GPUs can be expensive, consume significant power, and generate heat. They are less effective for tasks that cannot be processed in parallel."
+  ],
+  "RAM": [
+    "RAM was developed as volatile memory for active data access. It temporarily stores data for the CPU to access quickly. RAM allows fast data access and is essential for multitasking. It is volatile memory and data is lost when power is off. Main parts include memory chips, modules, pins, and PCB."
+  ]
+};
+
+// Highlight first item
+highlightNav(currentNavIndex);
+
+// Key navigation
+document.addEventListener("keydown", function(e){
+  if(askingLeave){
+    if(e.key === "ArrowRight" || e.key === "ArrowDown"){
+      speakText("You pressed continue. Continuing navigation.");
+      askingLeave = false;
+      spacePressCount = 0;
+    }
+    if(e.key === "ArrowLeft" || e.key === "ArrowUp"){
+      speakText("You pressed leave. Exiting navigation. Goodbye.");
+      askingLeave = false;
+      spacePressCount = 0;
+    }
+    return;
+  }
+
+  if(e.code === "Space"){
+    spacePressCount++;
+    speakText(`Space pressed ${spacePressCount} time${spacePressCount>1?'s':''}.`);
+    if(spacePressCount >= 3){
+      askingLeave = true;
+      speakText("You pressed the spacebar 3 times. Do you want to continue or leave? Press Right or Down arrow to continue, Left or Up arrow to leave.");
+      return;
+    }
+  }
+
+  if(!confirmationActive){
+    if(e.key === "ArrowRight" || e.key === "ArrowDown"){
+      pendingNavIndex = (currentNavIndex + 1) % navLinks.length;
+      askConfirmation(pendingNavIndex);
+    }
+    if(e.key === "ArrowLeft" || e.key === "ArrowUp"){
+      pendingNavIndex = (currentNavIndex - 1 + navLinks.length) % navLinks.length;
+      askConfirmation(pendingNavIndex);
+    }
+  } else {
+    if(e.key === "ArrowRight" || e.key === "ArrowDown"){
+      confirmationActive = false;
+      // Speak acknowledgment first
+      const ackUtter = new SpeechSynthesisUtterance("Thank you for confirmation. Moving to the next item.");
+      ackUtter.rate = 1.0;
+
+      ackUtter.onend = () => {
+        currentNavIndex = pendingNavIndex;
+        highlightNav(currentNavIndex);
+      };
+
+      speechSynthesis.cancel(); // stop any ongoing reading
+      speechSynthesis.speak(ackUtter);
+    }
+    if(e.key === "ArrowLeft" || e.key === "ArrowUp"){
+      confirmationActive = false;
+      // Speak cancellation acknowledgment
+      const cancelUtter = new SpeechSynthesisUtterance("Navigation canceled. I will read this item again.");
+      cancelUtter.rate = 1.0;
+
+      cancelUtter.onend = () => {
+        highlightNav(currentNavIndex);
+      };
+
+      speechSynthesis.cancel(); // stop any ongoing reading
+      speechSynthesis.speak(cancelUtter);
+    }
+  }
+});
+
+function askConfirmation(index){
+  confirmationActive = true;
+  const el = navLinks[index];
+  speakText(`Do you want to proceed to ${el.innerText}? Press Right or Down arrow to confirm, Left or Up arrow to cancel.`);
+}
+
+function highlightNav(index){
+  navLinks.forEach(link => link.classList.remove("highlight"));
+  const el = navLinks[index];
+  el.classList.add("highlight");
+
+  const content = navContent[el.innerText];
+  if(content) readSegments(content);
+  else speakText(el.innerText);
+}
+
+function readSegments(segments){
+  const fullText = segments.join(" ");
+  const utter = new SpeechSynthesisUtterance(fullText);
+  utter.rate = 1.0;
+  speechSynthesis.cancel(); // stop previous component reading
+  speechSynthesis.speak(utter);
+}
+
+function speakText(text){
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.rate = 1.0;
+  speechSynthesis.cancel(); // stop previous reading if needed
+  speechSynthesis.speak(utter);
+}
+</script>
+
+</body>
+</html>

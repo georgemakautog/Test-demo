@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPU Landing Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d);
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: url('cpu-background.jpg') no-repeat center center/cover;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(0,0,0,0.65);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 5;
+      max-width: 900px;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #00e5ff;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .hero button {
+      background: linear-gradient(45deg, #00e5ff, #ff00ff);
+      border: none;
+      padding: 15px 35px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .hero button:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 20px #00e5ff;
+    }
+
+    /* ===== FEATURES ===== */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 80px 20px;
+      background: #111;
+    }
+
+    .feature-card {
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 300px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #00e5ff;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 15px;
+      color: #00e5ff;
+    }
+
+    /* ===== CPU DESCRIPTION ===== */
+    .cpu-description {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 80px 20px;
+      line-height: 1.8;
+      text-align: justify;
+    }
+
+    .cpu-description h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #00e5ff;
+      font-size: 2.2rem;
+    }
+
+    footer {
+      background: #111;
+      padding: 40px;
+      color: #aaa;
+      text-align: center;
+    }
+
+    /* BACK TO TOP BUTTON */
+    #upBtn {
+      display: none;
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      font-size: 18px;
+      background: linear-gradient(45deg, #00e5ff, #ff00ff);
+      color: #111;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00e5ff;
+      transition: 0.3s ease;
+    }
+
+    #upBtn:hover {
+      transform: translateX(-50%) scale(1.1);
+      box-shadow: 0 0 25px #ff00ff;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>The Heart & Brain of Your Computer: The CPU</h1>
+      <p>Discover how the Central Processing Unit drives every instruction, task, and process inside your system.</p>
+      <button>Explore CPUs</button>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature-card">
+      <h3>Fast Processing</h3>
+      <p>Handles instructions at lightning speeds for better multitasking and responsiveness.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>High Efficiency</h3>
+      <p>Optimized power usage for cooler and more stable performance under load.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>Smart Architecture</h3>
+      <p>Designed with multi-core technology for smarter task management.</p>
+    </div>
+  </section>
+
+  <section class="cpu-description">
+    <h2>What is a CPU?</h2>
+    <p>
+      The CPU (Central Processing Unit) is the core component responsible for executing instructions, running programs, and performing calculations. It acts as the computer's brain, interpreting commands from hardware and software. Modern CPUs feature multiple cores and threads, enabling efficient multitasking and faster processing.
+    </p>
+    <p>
+      Without a CPU, a computer cannot function. It performs arithmetic, logic, control, and input/output operations defined by the system's programs. From simple tasks like opening apps to complex operations like rendering and computing, the CPU handles it all.
+    </p>
+  </section>
+
+  <button id="upBtn" onclick="topFunction()">⬆ Back to Top</button>
+
+  <footer>
+    &copy; 2025 BTVTEd-CSS-1. All Rights Reserved.
+  </footer>
+
+<script>
+let upBtn = document.getElementById("upBtn");
+
+window.onscroll = function() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    upBtn.style.display = "block";
+  } else {
+    upBtn.style.display = "none";
+  }
+};
+
+function topFunction() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+</script>
+
+</body>
+</html>

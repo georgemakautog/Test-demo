@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Motherboard Landing Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+    body {
+      background: linear-gradient(to right, #141e30, #243b55);
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      background: url('motherboard-bg.jpg') no-repeat center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      top: 0;
+      left: 0;
+    }
+
+    .hero-content {
+      z-index: 3;
+      max-width: 900px;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      color: #00e5ff;
+      margin-bottom: 20px;
+    }
+
+    .hero button {
+      background: linear-gradient(45deg, #00e5ff, #ff00ff);
+      padding: 15px 30px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: .3s;
+      font-weight: 700;
+    }
+
+    .hero button:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 20px #ff00ff;
+    }
+
+    /* FEATURES */
+    .features {
+      padding: 80px 20px;
+      background: #111;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .feature-card {
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 300px;
+      text-align: center;
+      transition: .3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #00e5ff;
+    }
+
+    .feature-card h3 { color: #00e5ff; margin-bottom: 10px; }
+
+    /* DESCRIPTION */
+    .motherboard-description {
+      max-width: 1000px;
+      padding: 80px 20px;
+      margin: auto;
+      line-height: 1.8;
+    }
+
+    .motherboard-description h2 {
+      text-align: center;
+      color: #00e5ff;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      background: #111;
+      padding: 40px;
+      text-align: center;
+      color: #aaa;
+    }
+
+    /* BACK TO TOP BUTTON */
+    #upBtn {
+      display: none;
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      font-size: 18px;
+      background: linear-gradient(45deg, #00e5ff, #ff00ff);
+      color: #111;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00e5ff;
+      transition: 0.3s ease;
+    }
+
+    #upBtn:hover {
+      transform: translateX(-50%) scale(1.1);
+      box-shadow: 0 0 25px #ff00ff;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Your System's Backbone: The Motherboard</h1>
+      <p>The motherboard connects every component, ensuring your system runs smoothly and efficiently.</p>
+      <button>Explore Motherboards</button>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature-card">
+      <h3>Component Hub</h3>
+      <p>Connects CPU, RAM, storage, and GPU—all in one platform.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>High Compatibility</h3>
+      <p>Supports various processors, memory types, and expansions.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>Efficient Power Delivery</h3>
+      <p>Stable and safe electricity distribution to all hardware.</p>
+    </div>
+  </section>
+
+  <section class="motherboard-description">
+    <h2>What is a Motherboard?</h2>
+    <p>The motherboard is the main printed circuit board (PCB) inside your computer. It connects and allows communication between all essential components such as the CPU, RAM, storage drives, GPU, and input/output devices.</p>
+
+    <p>It serves as the central backbone of the system by ensuring everything works together harmoniously. Without a motherboard, none of the components can communicate or function properly, making it one of the most vital parts of every computer.</p>
+  </section>
+
+  <button id="upBtn" onclick="topFunction()">⬆ Back to Top</button>
+
+  <footer>
+    &copy; 2025 BTVTEd-CSS-1. All Rights Reserved.
+  </footer>
+
+<script>
+let upBtn = document.getElementById("upBtn");
+
+window.onscroll = function() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    upBtn.style.display = "block";
+  } else {
+    upBtn.style.display = "none";
+  }
+};
+
+function topFunction() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+</script>
+
+</body>
+</html>

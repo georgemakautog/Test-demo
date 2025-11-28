@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPU Landing Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== GLOBAL STYLES ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100vh;
+      background: url('cpu-background.jpg') no-repeat center center/cover;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #00e5ff;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .hero button {
+      background: linear-gradient(45deg, #00e5ff, #ff00ff);
+      border: none;
+      padding: 15px 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00e5ff;
+    }
+
+    /* ===== FEATURES SECTION ===== */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 80px 20px;
+      gap: 30px;
+      background-color: #111;
+    }
+
+    .feature-card {
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 20px;
+      flex: 1 1 250px;
+      max-width: 300px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #00e5ff;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #00e5ff;
+    }
+
+    .feature-card p {
+      font-size: 1rem;
+    }
+
+    /* ===== USE CASES SECTION ===== */
+    .use-cases {
+      padding: 80px 20px;
+      background: linear-gradient(to right, #0f2027, #203a43);
+      text-align: center;
+    }
+
+    .use-cases h2 {
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      color: #00e5ff;
+    }
+
+    .cases-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .case {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 20px;
+      flex: 1 1 200px;
+      max-width: 250px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .case:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #ff00ff;
+    }
+
+    .case h4 {
+      margin-bottom: 10px;
+      color: #ff00ff;
+    }
+
+    .case p {
+      font-size: 0.95rem;
+    }
+
+    /* ===== DETAILED DESCRIPTION SECTION ===== */
+    .cpu-description {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: justify;
+      line-height: 1.8;
+    }
+
+    .cpu-description h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #00e5ff;
+      text-align: center;
+    }
+
+    .cpu-description p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      background-color: #111;
+      color: #aaa;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .features, .cases-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Power Your System with Modern CPUs</h1>
+      <p>Learn how modern CPUs drive performance, multitasking, and computing efficiency across every application.</p>
+      <button>Explore CPUs</button>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="features">
+    <div class="feature-card">
+      <h3>High Performance</h3>
+      <p>Modern CPUs deliver fast processing speeds, enabling smooth multitasking and high efficiency.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Multithreading</h3>
+      <p>Advanced CPUs handle multiple threads simultaneously, improving performance for demanding applications.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Energy Efficient</h3>
+      <p>Efficient CPU designs provide powerful performance while reducing power consumption and heat output.</p>
+    </div>
+  </section>
+
+  <!-- USE CASES SECTION -->
+  <section class="use-cases">
+    <h2>CPU in Action</h2>
+    <div class="cases-container">
+      <div class="case">
+        <h4>Gaming</h4>
+        <p>Run the latest games smoothly with high FPS and optimized CPU performance.</p>
+      </div>
+      <div class="case">
+        <h4>Software Development</h4>
+        <p>Compile and run complex code faster, improving productivity for developers.</p>
+      </div>
+      <div class="case">
+        <h4>Video Editing</h4>
+        <p>Process and render high-resolution videos efficiently with multi-core CPUs.</p>
+      </div>
+      <div class="case">
+        <h4>Data Analysis</h4>
+        <p>Perform computations and simulations quickly, accelerating data-driven decisions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAILED DESCRIPTION SECTION -->
+  <section class="cpu-description">
+    <h2>What is a CPU?</h2>
+    <p>A CPU, or Central Processing Unit, is the brain of the computer. It performs instructions from programs, executes calculations, and manages data flow between memory, storage, and other components.</p>
+    <p>CPUs are essential for general computing tasks, running applications, and enabling multitasking. They vary in cores, threads, and clock speeds, directly affecting the speed and efficiency of your computer.</p>
+    <p>Modern CPUs support advanced technologies like multithreading, virtualization, and energy efficiency, making them suitable for gaming, professional work, software development, and scientific computations.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 BTVTEd-CSS Community. All Rights Reserved.
+  </footer>
+
+</body>
+</html>

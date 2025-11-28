@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Tools & Equipment Guides</title>
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<style>
+/* =======================
+   BASIC RESET & VARIABLES
+======================= */
+* { box-sizing: border-box; margin:0; padding:0; font-family: Arial, sans-serif; }
+body { background:#f4f4f9; color:#000; line-height:1.6; scroll-behavior: smooth; }
+a { text-decoration:none; color:inherit; }
+img { max-width:100%; display:block; }
+
+/* =======================
+   NAVBAR
+======================= */
+
+/* =======================
+   NAVBAR
+======================= */
+.navbar {
+    display:flex; justify-content: space-between; align-items:center;
+    padding: 15px 25px; background: cyan; position: sticky; top:0; 
+    z-index:1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.navbar .logo { 
+    font-size:1.5rem; 
+    font-weight:bold; 
+    color:#000; 
+}
+
+/* MENU DEFAULT (DESKTOP) */
+.menu ul { 
+    display:flex; 
+    list-style:none; 
+    gap:15px; 
+}
+
+.menu ul li a { 
+    padding:5px 10px; 
+    border-radius:5px; 
+    transition:0.3s; 
+}
+
+.menu ul li a:hover { 
+    background:#00e5ff; 
+    color:#fff; 
+}
+
+/* =======================
+   HAMBURGER (MOBILE)
+======================= */
+.hamburger {
+    width: 30px;
+    height: 22px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.hamburger span {
+    height: 4px;
+    background: #000;
+    border-radius: 5px;
+    transition: 0.3s ease;
+}
+
+/* ANIMATION → X */
+.hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* =======================
+   MOBILE MENU DROPDOWN
+======================= */
+@media (max-width: 768px) {
+
+    .hamburger {
+        display: flex;
+    }
+
+    .menu {
+        width: 100%;
+        display: none;
+    }
+
+    .menu.active {
+        display: block;
+    }
+
+    .menu ul {
+        flex-direction: column;
+        background: cyan;
+        padding: 15px 0;
+        text-align: center;
+        gap: 20px;
+    }
+}
+
+
+/* =======================
+   HERO SECTION
+======================= */
+.hero {
+    text-align:center; padding:100px 20px; background: linear-gradient(120deg,#0f2027,#203a43,#2c5364); color:#fff;
+}
+.hero h1 { font-size:3rem; margin-bottom:20px; color:#00e5ff; }
+.hero p { font-size:1.2rem; max-width:700px; margin:0 auto 30px auto; }
+.hero .cta-btn {
+    display:inline-block; padding:12px 25px; background:#00e5ff; color:#111; border-radius:8px;
+    font-weight:bold; transition:0.3s;
+}
+.hero .cta-btn:hover { transform:scale(1.05); }
+
+/* =======================
+   FEATURES SECTION
+======================= */
+.features {
+    display:flex; flex-wrap:wrap; justify-content:center; gap:30px; padding:60px 20px; max-width:1200px; margin:auto;
+}
+.feature-card {
+    flex:1 1 300px; background:#fff; border-radius:20px; padding:25px; text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,0.2); transition: transform 0.3s;
+}
+.feature-card:hover { transform: scale(1.05); }
+.feature-card h3 { color:#00e5ff; margin-bottom:15px; }
+.feature-card p { font-size:0.95rem; color:#333; }
+
+/* =======================
+   3D MODELS SECTION
+======================= */
+.models-section { padding:60px 20px; max-width:1200px; margin:auto; }
+.models-section h2 { text-align:center; color:#00e5ff; margin-bottom:40px; }
+.model-wrapper {
+    display:flex; flex-wrap:wrap; justify-content:center; gap:30px;
+    text-align:center;
+}
+.model-card {
+    background:#fff; border-radius:15px; padding:15px; box-shadow:0 4px 15px rgba(0,0,0,0.2); transition: transform 0.3s;
+    width:300px;
+}
+.model-card:hover { transform: scale(1.05); }
+.model-card model-viewer {
+    width:100%; height:300px; border-radius:10px;
+}
+.model-card .model-label { font-weight:bold; margin-top:10px; color:#00e5ff; }
+.model-card button, .model-card a {
+    margin:5px 5px 0 5px; padding:6px 12px; border:none; border-radius:5px; cursor:pointer;
+    background:#00e5ff; color:#fff; font-weight:bold; transition:0.3s;
+}
+.model-card button:hover, .model-card a:hover { transform: scale(1.05); }
+
+/* =======================
+   FOOTER
+======================= */
+footer { text-align:center; padding:30px 20px; background:#111; color:#fff; }
+
+/* =======================
+   RESPONSIVE
+======================= */
+@media(max-width:768px){
+    .navbar { flex-direction:column; gap:10px; }
+    .features { flex-direction:column; }
+    .model-wrapper { flex-direction:column; align-items:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">BTVTEd-CSS Community</div>
+
+    <!-- Hamburger for mobile -->
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="menu" id="menu">
+        <ul>
+            <li><a href="#home">HOME</a></li>
+            <li><a href="features.html">FEATURES</a></li>
+            <li><a href="#models">MODELS</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="pages/blog.html">BLOG</a></li>
+        </ul>
+    </div>
+</div>
+
+
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+    <h1>Welcome to CSS Tools & Equipment Guides</h1>
+    <p>Explore interactive 3D models of computer components, learn clear definitions, and access practical guides designed for students and aspiring ICT professionals.</p>
+    <a href="#models" class="cta-btn">Explore 3D Models</a>
+</section>
+
+<!-- FEATURES SECTION -->
+<section class="features" id="features">
+    <div class="feature-card">
+        <h3>Interactive 3D Models</h3>
+        <p>Rotate, zoom, and explore components like the motherboard, CPU, GPU, and more with fully interactive 3D visuals.</p>
+    </div>
+    <div class="feature-card">
+        <h3>Definitions & Guides</h3>
+        <p>Learn what each part does with simple explanations and step-by-step guides to strengthen your CSS skills.</p>
+    </div>
+    <div class="feature-card">
+        <h3>Mobile Friendly</h3>
+        <p>Access your learning anywhere! Our website is fully responsive and works on all devices from desktop to smartphone.</p>
+    </div>
+</section>
+
+<!-- 3D MODELS SECTION -->
+<section class="models-section" id="models">
+    <h2>Explore Components</h2>
+    <div class="model-wrapper">
+
+        <!-- Motherboard -->
+        <div class="model-card">
+            <model-viewer id="model-motherboard" src="rog_strix_x370-f_motherboard.glb" auto-rotate camera-controls></model-viewer>
+            <div class="model-label">Motherboard</div>
+            <button onclick="ttsModel('model-motherboard', 'Motherboard: The main circuit board connecting all components.')">🔊 Read</button>
+            <a href="lp3.html">See More</a>
+        </div>
+
+        <!-- CPU -->
+        <div class="model-card">
+            <model-viewer id="model-cpu" src="free_intel_cpu.glb" auto-rotate camera-controls></model-viewer>
+            <div class="model-label">CPU</div>
+            <button onclick="ttsModel('model-cpu', 'CPU: The brain of the computer that executes instructions.')">🔊 Read</button>
+            <a href="lp2.html">See More</a>
+        </div>
+
+        <!-- GPU -->
+        <div class="model-card">
+            <model-viewer id="model-gpu" src="nvidia_geforce_rtx_3090_-_gpu.glb" auto-rotate camera-controls></model-viewer>
+            <div class="model-label">GPU</div>
+            <button onclick="ttsModel('model-gpu', 'GPU: Processes graphics, renders images, and accelerates 3D tasks.')">🔊 Read</button>
+            <a href="lp.html">See More</a>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    &copy; 2025 BTVTEd-CSS Community. All Rights Reserved.
+</footer>
+
+<script>
+// Text-to-Speech function for models
+function ttsModel(id, text){
+    const speech = new SpeechSynthesisUtterance(text);
+    speechSynthesis.speak(speech);
+}
+
+const hamburger = document.getElementById('hamburger');
+const menu = document.getElementById('menu');
+
+hamburger.addEventListener('click', () => {
+    menu.classList.toggle('active');       // Show/hide menu
+    hamburger.classList.toggle('open');    // Animate hamburger
+});
+
+// Text-to-Speech for models
+function ttsModel(id, text){
+    speechSynthesis.cancel();              // Stop previous speech
+    const speech = new SpeechSynthesisUtterance(text);
+    speechSynthesis.speak(speech);
+}
+</script>
+
+
+
+</body>
+</html>

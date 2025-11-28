@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPU Landing Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== GLOBAL STYLES ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100vh;
+      background: url('gpu-background.jpg') no-repeat center center/cover;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #00e5ff;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .hero button {
+      background: linear-gradient(45deg, #00e5ff, #ff00ff);
+      border: none;
+      padding: 15px 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00e5ff;
+    }
+
+    /* ===== FEATURES SECTION ===== */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 80px 20px;
+      gap: 30px;
+      background-color: #111;
+    }
+
+    .feature-card {
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 20px;
+      flex: 1 1 250px;
+      max-width: 300px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #00e5ff;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #00e5ff;
+    }
+
+    /* ===== USE CASES SECTION ===== */
+    .use-cases {
+      padding: 80px 20px;
+      background: linear-gradient(to right, #0f2027, #203a43);
+      text-align: center;
+    }
+
+    .use-cases h2 {
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      color: #00e5ff;
+    }
+
+    .cases-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .case {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 20px;
+      flex: 1 1 200px;
+      max-width: 250px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .case:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #ff00ff;
+    }
+
+    .case h4 {
+      margin-bottom: 10px;
+      color: #ff00ff;
+    }
+
+    /* ===== DETAILED DESCRIPTION ===== */
+    .gpu-description {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: justify;
+      line-height: 1.8;
+    }
+
+    .gpu-description h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #00e5ff;
+      text-align: center;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      background-color: #111;
+      color: #aaa;
+    }
+
+    /* ===== BACK TO TOP BUTTON ===== */
+    #upBtn {
+      display: none;
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      font-size: 18px;
+      background: linear-gradient(45deg, #00e5ff, #ff00ff);
+      color: #111;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00e5ff;
+      transition: 0.3s ease;
+    }
+
+    #upBtn:hover {
+      transform: translateX(-50%) scale(1.1);
+      box-shadow: 0 0 25px #ff00ff;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
+      .hero p { font-size: 1rem; }
+      .features, .cases-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Power Your Vision with Cutting-Edge GPUs</h1>
+      <p>Discover how modern GPUs transform gaming, creative work, AI, and more — delivering unmatched performance, stunning visuals, and faster computing.</p>
+      <button>Explore GPUs</button>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="features">
+    <div class="feature-card">
+      <h3>High Performance</h3>
+      <p>Experience lightning-fast processing that handles complex tasks with ease, making your applications and games run smoothly.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Stunning Graphics</h3>
+      <p>Render ultra-realistic visuals, crisp textures, and smooth animations for gaming, 3D design, and video editing.</p>
+    </div>
+    <div class="feature-card">
+      <h3>AI & Innovation</h3>
+      <p>Leverage GPU power for artificial intelligence, machine learning, and scientific simulations that require massive parallel processing.</p>
+    </div>
+  </section>
+
+  <!-- USE CASES SECTION -->
+  <section class="use-cases">
+    <h2>GPU in Action</h2>
+    <div class="cases-container">
+      <div class="case">
+        <h4>Gaming</h4>
+        <p>Run the latest games at high frame rates with stunning graphics and realistic environments.</p>
+      </div>
+      <div class="case">
+        <h4>3D Design</h4>
+        <p>Create detailed models and animations with smooth rendering and precise performance.</p>
+      </div>
+      <div class="case">
+        <h4>Video Editing</h4>
+        <p>Edit and render videos faster, making your creative workflow more efficient.</p>
+      </div>
+      <div class="case">
+        <h4>AI & Research</h4>
+        <p>Accelerate machine learning, data processing, and simulations with massive computational power.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESCRIPTION -->
+  <section class="gpu-description">
+    <h2>What is a GPU?</h2>
+    <p>A GPU, or Graphics Processing Unit, is a specialized processor designed to handle complex calculations required for rendering high-quality visuals and graphics. Unlike a CPU that manages general computing tasks, a GPU excels at performing thousands of operations simultaneously, making it indispensable for tasks that demand speed, precision, and parallel processing.</p>
+    <p>Modern GPUs are at the core of gaming, video editing, 3D modeling, and animation, delivering lifelike graphics and seamless performance. Beyond entertainment, GPUs are now critical in emerging fields like artificial intelligence, machine learning, scientific simulations, and cryptocurrency mining.</p>
+    <p>Whether you are a gamer, designer, researcher, or content creator, a powerful GPU unlocks new levels of speed, efficiency, and visual quality.</p>
+  </section>
+
+  <!-- BACK TO TOP BUTTON -->
+  <button id="upBtn" onclick="topFunction()">⬆ Back to Top</button>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 BTVTEd-CSS-1. All Rights Reserved.
+  </footer>
+
+<script>
+let upBtn = document.getElementById("upBtn");
+
+window.onscroll = function() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    upBtn.style.display = "block";
+  } else {
+    upBtn.style.display = "none";
+  }
+};
+
+function topFunction() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+</script>
+<a href="index.html" class="back-btn">⬅ Back to Home</a>
+
+</body>
+</html>

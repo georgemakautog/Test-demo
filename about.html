@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BTVTEd-CSS Community</title>
+<style>
+/* ==========================
+   BASIC RESET
+========================== */
+* { box-sizing:border-box; margin:0; padding:0; font-family:Arial, sans-serif; }
+body { background:#111; color:#fff; line-height:1.6; }
+a { text-decoration:none; color:inherit; }
+
+/* ==========================
+   NAVBAR
+========================== */
+.navbar {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:15px 25px; background: cyan; position:sticky; top:0; z-index:1000;
+}
+.navbar .logo { font-size:1.5rem; font-weight:bold; color:#000; }
+.menu ul { display:flex; list-style:none; gap:15px; }
+.menu ul li a { padding:5px 10px; border-radius:5px; transition:0.3s; }
+.menu ul li a:hover { background:#00e5ff; color:#fff; }
+
+/* HAMBURGER */
+.hamburger {
+    width:30px; height:22px; display:none; flex-direction:column; justify-content:space-between; cursor:pointer;
+}
+.hamburger span { height:4px; background:#000; border-radius:5px; transition:0.3s ease; }
+.hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,6px); }
+.hamburger.open span:nth-child(2) { opacity:0; }
+.hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(6px,-6px); }
+
+/* MOBILE MENU */
+@media(max-width:768px){
+    .hamburger { display:flex; }
+    .menu { width:100%; display:none; }
+    .menu.active { display:block; }
+    .menu ul { flex-direction:column; background:cyan; padding:15px 0; text-align:center; gap:20px; }
+}
+
+/* ==========================
+   ABOUT SECTION
+========================== */
+.about-container {
+    display:flex; flex-direction:column; align-items:center; gap:20px; margin-top:20px;
+}
+.about-content {
+    background:#222; padding:35px; border-radius:25px; max-width:550px; width:95%;
+    text-align:center; box-shadow:0 0 20px rgba(0,0,0,0.4);
+    transition:transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Circular Image */
+#member-wrapper img { 
+    width:150px; height:150px; border-radius:50%; object-fit:cover; margin-bottom:15px; 
+    transition: transform 0.5s ease; 
+}
+#member-wrapper img:hover { transform: scale(1.1); }
+
+/* Slide animation */
+#member-wrapper.slide-left { transform: translateX(100%); opacity:0; }
+#member-wrapper.slide-right { transform: translateX(-100%); opacity:0; }
+
+/* Buttons & Dots */
+.side-btn {
+    background:#00e5ff; color:#fff; border:none; padding:12px 18px; border-radius:50%;
+    font-size:1.5rem; cursor:pointer; transition: transform 0.3s ease;
+}
+.side-btn:hover { transform:scale(1.2); }
+#indicator-dots { display:flex; justify-content:center; gap:10px; margin:0 15px; }
+.dot { width:12px; height:12px; border-radius:50%; background:#555; cursor:pointer; transition:all 0.3s ease; }
+.dot.active { background:#00e5ff; transform:scale(1.2); }
+
+/* ABOUT DESCRIPTION */
+.about-description {
+    max-width:900px; margin:40px auto; background: rgba(255,255,255,0.08); padding:25px; border-radius:15px;
+    line-height:1.7; font-size:1.05rem; backdrop-filter:blur(4px);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+    #member-wrapper img { width:120px; height:120px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">BTVTEd-CSS Community</div>
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="menu" id="menu">
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="features.html">FEATURES</a></li>
+            <li><a href="#models">MODELS</a></li>
+            <li><a href="pages/blog.html">BLOG</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+<!-- ABOUT SECTION -->
+<section id="about" style="padding:60px 20px; background: linear-gradient(120deg, #0f2027, #203a43, #2c5364); color:#fff;">
+    <h1 style="text-align:center; color:#00e5ff; margin-bottom:30px; font-size:2.5rem;">ABOUT US</h1>
+
+    <div class="about-container">
+        <div class="about-content" id="member-wrapper">
+            <img id="member-img" src="" alt="Team Photo">
+            <p id="member-text"></p>
+            <p id="member-desc"></p>
+        </div>
+
+        <!-- Navigation arrows + dots -->
+        <div class="nav-controls" style="display:flex; gap:15px; flex-wrap:wrap; justify-content:center; margin-top:15px;">
+            <button class="side-btn" onclick="prevMember()">❮</button>
+            <div id="indicator-dots"></div>
+            <button class="side-btn" onclick="nextMember()">❯</button>
+        </div>
+    </div>
+
+    <!-- ABOUT DESCRIPTION -->
+    <div class="about-description">
+        <p>We are the BTVTEd-CSS Community dedicated to creating accessible learning tools for Computer Systems Servicing students. Our platform provides interactive 3D models, simplified definitions, and hands-on guides to support learners of all levels.</p>
+        <p>Our goal is to make complex computer components easier to understand through visual aids, mobile-friendly content, and student-centered learning approaches.</p>
+        <p>Whether you are a beginner or advancing your ICT knowledge, this platform equips you with the necessary tools to grow in the field of Computer Systems Servicing.</p>
+    </div>
+</section>
+
+<script>
+// Hamburger toggle
+const hamburger = document.getElementById('hamburger');
+const menu = document.getElementById('menu');
+hamburger.addEventListener('click', () => {
+    menu.classList.toggle('active');
+    hamburger.classList.toggle('open');
+});
+
+// Team members
+const teamMembers = [
+    { name:"Andre — Lead Developer", img:"test1.jpg", desc:"Developed the main system, handled 3D model integration, navigation, TTS, and core features." },
+    { name:"Khent Harvey — UI/UX Designer", img:"test3.jpg", desc:"Designed the website layout, visual consistency, component styling, and mobile responsiveness." },
+    { name:"BaiGPT — AI Assistant Developer", img:"test4.jpg", desc:"Helps debug code, optimize scripts, and enhance functionality using AI assistance." },
+    { name:"Boss — Documentation Specialist", img:"test2.jpg", desc:"Writes documentation, guides, and explanations to improve learning accessibility." }
+];
+
+let currentIndex = 0;
+const memberText = document.getElementById("member-text");
+const memberImg = document.getElementById("member-img");
+const memberDesc = document.getElementById("member-desc");
+const indicatorDots = document.getElementById("indicator-dots");
+
+// Create dots
+teamMembers.forEach((_, i) => {
+    const dot = document.createElement("div");
+    dot.classList.add("dot");
+    dot.addEventListener("click", () => { currentIndex=i; showMember(i); resetAutoSlide(); });
+    indicatorDots.appendChild(dot);
+});
+
+// Show member
+function showMember(index, direction=""){
+    const wrapper = document.getElementById("member-wrapper");
+    if(direction === "left") wrapper.classList.add("slide-left");
+    else if(direction === "right") wrapper.classList.add("slide-right");
+
+    setTimeout(() => {
+        memberText.innerHTML = teamMembers[index].name;
+        memberImg.src = teamMembers[index].img;
+        memberDesc.innerText = teamMembers[index].desc;
+        wrapper.classList.remove("slide-left", "slide-right");
+        updateDots();
+    }, 300);
+}
+
+function updateDots(){
+    document.querySelectorAll(".dot").forEach((dot, i) => {
+        dot.classList.toggle("active", i === currentIndex);
+    });
+}
+
+function prevMember(){
+    currentIndex = (currentIndex - 1 + teamMembers.length) % teamMembers.length;
+    showMember(currentIndex, "left");
+    resetAutoSlide();
+}
+
+function nextMember(){
+    currentIndex = (currentIndex + 1) % teamMembers.length;
+    showMember(currentIndex, "right");
+    resetAutoSlide();
+}
+
+// Auto-slide every 5 seconds
+let autoSlide = setInterval(nextMember, 5000);
+function resetAutoSlide(){
+    clearInterval(autoSlide);
+    autoSlide = setInterval(nextMember, 5000);
+}
+
+// Initialize
+showMember(currentIndex);
+</script>
+
+</body>
+</html>

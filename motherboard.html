@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Motherboard Landing Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== GLOBAL STYLES ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100vh;
+      background: url('motherboard-background.jpg') no-repeat center center/cover;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #00e5ff;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .hero button {
+      background: linear-gradient(45deg, #00e5ff, #ff00ff);
+      border: none;
+      padding: 15px 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00e5ff;
+    }
+
+    /* ===== FEATURES SECTION ===== */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 80px 20px;
+      gap: 30px;
+      background-color: #111;
+    }
+
+    .feature-card {
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 20px;
+      flex: 1 1 250px;
+      max-width: 300px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #00e5ff;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #00e5ff;
+    }
+
+    .feature-card p {
+      font-size: 1rem;
+    }
+
+    /* ===== USE CASES SECTION ===== */
+    .use-cases {
+      padding: 80px 20px;
+      background: linear-gradient(to right, #0f2027, #203a43);
+      text-align: center;
+    }
+
+    .use-cases h2 {
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      color: #00e5ff;
+    }
+
+    .cases-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .case {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 20px;
+      flex: 1 1 200px;
+      max-width: 250px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .case:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #ff00ff;
+    }
+
+    .case h4 {
+      margin-bottom: 10px;
+      color: #ff00ff;
+    }
+
+    .case p {
+      font-size: 0.95rem;
+    }
+
+    /* ===== DETAILED DESCRIPTION SECTION ===== */
+    .motherboard-description {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: justify;
+      line-height: 1.8;
+    }
+
+    .motherboard-description h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #00e5ff;
+      text-align: center;
+    }
+
+    .motherboard-description p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      background-color: #111;
+      color: #aaa;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .features, .cases-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Discover the Backbone of Your System: Motherboards</h1>
+      <p>The motherboard connects all components, manages communication, and provides power and expansion for your PC.</p>
+      <button>Explore Motherboards</button>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="features">
+    <div class="feature-card">
+      <h3>Connectivity</h3>
+      <p>Provides ports and slots for CPU, GPU, RAM, storage devices, and peripherals.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Expansion</h3>
+      <p>Supports additional components via PCIe slots, M.2 slots, and RAM expansion.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Power Management</h3>
+      <p>Distributes power efficiently to all components while ensuring system stability.</p>
+    </div>
+  </section>
+
+  <!-- USE CASES SECTION -->
+  <section class="use-cases">
+    <h2>Motherboard in Action</h2>
+    <div class="cases-container">
+      <div class="case">
+        <h4>Gaming PCs</h4>
+        <p>Connect high-end CPUs and GPUs for smooth gaming performance.</p>
+      </div>
+      <div class="case">
+        <h4>Workstations</h4>
+        <p>Support multiple storage devices, GPUs, and high-speed RAM for professional workloads.</p>
+      </div>
+      <div class="case">
+        <h4>Server Systems</h4>
+        <p>Provide stability and connectivity for multiple processors and network devices.</p>
+      </div>
+      <div class="case">
+        <h4>Custom Builds</h4>
+        <p>Enable custom configurations with overclocking, RGB setups, and advanced cooling solutions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAILED DESCRIPTION SECTION -->
+  <section class="motherboard-description">
+    <h2>What is a Motherboard?</h2>
+    <p>A motherboard is the main circuit board that connects all the essential components of a computer, including the CPU, GPU, RAM, storage devices, and peripheral interfaces. It provides the pathways for data communication and power distribution across the system.</p>
+    <p>Motherboards come in various form factors such as ATX, Micro-ATX, and Mini-ITX, each offering different levels of expandability and features. High-end motherboards support advanced overclocking, multiple GPU setups, and enhanced cooling solutions.</p>
+    <p>Choosing the right motherboard ensures system stability, compatibility, and future-proofing for upgrades. It is truly the backbone of any computer, enabling all components to work seamlessly together for both performance and reliability.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 BTVTEd-CSS Community. All Rights Reserved.
+  </footer>
+
+</body>
+</html>
